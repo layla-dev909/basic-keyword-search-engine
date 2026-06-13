@@ -1,0 +1,14 @@
+{
+    "us": {
+        "doc1": "Python is a popular programming language used for data science and automation.",
+        "doc2": "Java is commonly used in enterprise software and Android development.",
+        "doc5": "Artificial intelligence is transforming many industries.",
+        "doc6": "Python libraries such as pandas and NumPy are widely used for analysis.",
+        "doc10": "SQL is a language used to query relational databases.",
+        "doc11": "The Python community maintains thousands of open-source projects.",
+        "doc12": "Web development often uses HTML, CSS, and JavaScript.",
+        "doc13": "Python can be used for web development through frameworks like Django and Flask.",
+        "doc28": "Big data technologies process enormous volumes of information.",
+        "doc30": "Many data science professionals use Python every day."
+    }
+}
