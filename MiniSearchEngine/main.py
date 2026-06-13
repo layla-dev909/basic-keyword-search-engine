@@ -1,7 +1,8 @@
 import json
 
+## SEARCH FUNCTION
 def searchKeywordForAny(data: dict, keywords):
-    # SINGLE KEYWORD
+    # SINGLE KEYWORD FUNCTION
     if isinstance(keywords, str) and keywords != "":
         try:
             keywords = keywords.lower()
@@ -25,7 +26,7 @@ def searchKeywordForAny(data: dict, keywords):
                 counter[keywords] += 1
 
         return matchesDict, counter
-    # MULTIPLE KEYWORDS
+    # MULTIPLE KEYWORDS FUNCTION
     elif isinstance(keywords,list) and keywords != []:
         matchesDict = {}
         counter = {}
@@ -53,10 +54,12 @@ def searchKeywordForAny(data: dict, keywords):
     else:
         return {}, 0
 
+## TITLE PRINTING
 def printTitle(filename)->None:
     print("## MINI SEARCH ENGINE ##")
     print(f"Searching in {filename}...")
 
+## GETTING USER INPUT
 def getUserInput():
     userInput = input("Insert Keyword: ").lower()
     if "," in userInput:
@@ -65,21 +68,23 @@ def getUserInput():
             while True:
                 duplicated = input("There are duplicated keywords, desconsider these duplicated ones and continue searching?(Y/N): ").lower()
                 if duplicated == ("y" or "yes"):
-                    return "any", list(set(splittedInput))
+                    return list(set(splittedInput))
                 elif duplicated == ("n" or "no"):
-                    return "any", ""
+                    return ""
                 else:
                     print("Invalid input, try again.")
     else:
-        return "", userInput
-    
+        return userInput
+
+## OPENING INPUT JSON FILE
 inputJson = "input.json"
 with open(inputJson, 'r') as initialFile:
     documents = json.load(initialFile)
 
-searchType, keyword = getUserInput()
+keyword = getUserInput()
 matches, counter = searchKeywordForAny(documents, keyword)
 
+## CHECKING IF KEYWORD IS SINGLE KEYWORD OR MULTIPLE KEYWORDS
 keyword = [keyword] if isinstance(keyword, str) else keyword
 
 results = {}
@@ -91,11 +96,13 @@ if matches != {}:
 else:
     print("No documents found")
 
+## COUNTING MATCHES
 for key in keyword:
     if key in counter:
         print(f"Matches in '{key}': {counter[key]}")
-outputJson = "output.json"
 
+## WRITING OUTPUT JSON
+outputJson = "output.json"
 with open(outputJson, 'w') as finalFile:
     if results:
         json.dump(results, finalFile, indent=4)
